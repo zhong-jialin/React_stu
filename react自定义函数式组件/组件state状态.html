@@ -1,10 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        .title{
+            color: white;
+            background-color: green;
+        }
+    </style>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../React-js/react.development.js"></script>
+    <script src="../React-js/react-dom.development.js"></script>
+    <script src="../React-js/babel.min.js"></script>
+<!--    <script src="../React-js/prop-types.js"></script>-->
+    <title>Document</title>
 </head>
 <body>
-
+<div id="test"></div>
 </body>
+<script type="text/babel">
+    //定义组件
+    class Welcome extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {isHot:false}
+            //onclick 穿this过来重新绑定this
+            this.chamgeweather = this.chamgeweather.bind(this)
+        }
+        chamgeweather(){
+            //chamgeweather 的实例原型是welcome this只想Welcome
+            //由于chamgeweather是由onclick调用，所以不能直接调用，会返回undefine
+
+            //更改属性不能直接更改 例如
+            // const isHot = this.state.isHot
+            // this.state.isHot = ! isHot
+            //这是一种合并动作
+            const isHot = this.state.isHot
+            this.setState({isHot:!isHot})
+        }
+        render() {
+            return <h1 onClick={this.chamgeweather}>Hello{this.state.isHot?"1":"0"}</h1>;
+        }
+    }  //渲染虚拟dom到页面
+    ReactDOM.render(<Welcome/>,document.getElementById('test'))
+
+</script>
 </html>
