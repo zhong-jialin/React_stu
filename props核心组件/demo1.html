@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <style>
+    .title{
+      color: white;
+      background-color: green;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="../React-js/react.development.js"></script>
+  <script src="../React-js/react-dom.development.js"></script>
+  <script src="../React-js/babel.min.js"></script>
+  <script src="../React-js/prop-types.js"></script>
+  <title>Document</title>
+</head>
+<body>
+<div id="test"></div>
+<div id="test2"></div>
+</body>
+<script type="text/babel">
+  //定义组件
+  class Person extends React.Component{
+    render(){
+      console.log(this)
+      const {name,age,sex} = this.props
+      return(
+              <ul>
+                <li>name:{name}</li>
+                <li>age:{age}</li>
+                <li>sex:{sex}</li>
+              </ul>
+      )
+    }
+  }
+  //渲染虚拟dom到页面
+  const p = {name:"tom", age : "19", sex : "man"}
+  ReactDOM.render(<Person {...p}/>,document.getElementById('test'))
+</script>
+</html>
